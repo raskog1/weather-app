@@ -4,10 +4,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Juniper's Weather App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="./assets/css/style.css">
+
 </head>
 
+<header>
+    <div class="jumbotron">
+        <h1>Juniper's Weather App</h1>
+        <p class="lead">Get weather information from a child.</p>
+    </div>
+</header>
+
 <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3 search-box">
+                <label for="city-search">Please type the city name in the search box below.</label>
+                <input type="text" placeholder="Enter city here..." id="search-city">
+                <button class="btn btn-info" id="search-button"><i class="fa fa-search"></i>Search</button>
+                <div id="city-history"></div>
+            </div>
+
+            <div class="col-md-9 weather-results">
+                <div class="row results-top">
+                    <div class="col-sm-12 col-md-6 current-temp">
+                        <img src="./assets/images/stormy.jpg" alt="Lightning bolt" height="300px" width="300px">
+                        <h5 class="temp-top-text">Search for a city.</h5>
+                        <div id="temperature"><span id="fTemp"></span>&#176</div>
+                    </div>
+
+                    <div class="col-sm-12 col-md-6 weather-details">
+                        <div class="weather-list"></div>
+                    </div>
+                </div>
+
+                <div class="row results-bottom">
+                    <!-- <img src="./assets/images/stormy.jpg" alt="Lightning Bolt" height="200%" width="20%"> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="./assets/javascript/weather.js"></script>
 
 </body>
 
