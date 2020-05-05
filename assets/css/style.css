@@ -42,6 +42,10 @@
     margin: 5px;
 }
 
+.results-top {
+    height: 60%;
+}
+
 .weather-results {
     background-color: lightblue;
     border: 2px solid white;
@@ -76,23 +80,37 @@ img {
 }
 
 .weather-details {
-   margin-top: 28.797px;
-}
-
-.weather-list {
     position: relative;
-    height: 300px;
-    width: 300px;
-    background-color: white;
-    margin: auto;
-    padding: 0px;
-    border-radius: 20px;
-    opacity: 0.5;
+    margin: 28.797px 0;
 }
 
-.results-top {
-    height: 60%;
+#weather-list {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
 }
+
+#weather-list h4 {
+    margin: 20px 0;
+}
+
+.results-bottom {
+    position: relative;
+    margin: auto 10px;
+    height: 40%;
+}
+
+.forecast {
+    height: 150px;
+    margin: 5px;
+    padding: 0;
+    background-color: white;
+    border-radius: 20px;
+}
+
+
 
 .sunny {
 
@@ -111,7 +129,7 @@ img {
 }
 
 .stormy {
-
+    background: url(./assets/images/stormy.jpg);
 }
 
 .rainy {

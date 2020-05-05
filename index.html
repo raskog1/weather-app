@@ -33,18 +33,34 @@
             <div class="col-md-9 weather-results">
                 <div class="row results-top">
                     <div class="col-sm-12 col-md-6 current-temp">
-                        <img src="./assets/images/stormy.jpg" alt="Lightning bolt" height="300px" width="300px">
+                        <img id="today-image" src="./assets/images/colors.jpg" alt="Color cloud" height="300px"
+                            width="300px">
                         <h5 class="temp-top-text">Search for a city.</h5>
-                        <div id="temperature"><span id="fTemp"></span>&#176</div>
+                        <div id="temperature"><span id="fTemp"></span></div>
                     </div>
 
                     <div class="col-sm-12 col-md-6 weather-details">
-                        <div class="weather-list"></div>
+                        <div id="weather-list">
+                            <h4 id="humidity"></h4>
+                            <h4 id="windSpeed"></h4>
+                            <h4 id="uvIndex"></h4>
+                        </div>
                     </div>
                 </div>
 
                 <div class="row results-bottom">
-                    <!-- <img src="./assets/images/stormy.jpg" alt="Lightning Bolt" height="200%" width="20%"> -->
+                    <div class="col forecast" id="forecast1">
+                        <img src="./assets/images/colors.jpg" alt="Color cloud" height="150px">
+                    </div>
+                    <div class='w-100 d-md-none'></div>
+                    <div class="col forecast" id="forecast2"></div>
+                    <div class='w-100 d-md-none'></div>
+                    <div class="col forecast" id="forecast3"></div>
+                    <div class='w-100 d-md-none'></div>
+                    <div class="col forecast" id="forecast4"></div>
+                    <div class='w-100 d-md-none'></div>
+                    <div class="col forecast" id="forecast5"></div>
+                    <div class='w-100 d-md-none'></div>
                 </div>
             </div>
         </div>
