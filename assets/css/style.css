@@ -43,7 +43,7 @@
 }
 
 .results-top {
-    height: 60%;
+    height: 55%;
 }
 
 .weather-results {
@@ -54,7 +54,7 @@
 
 img {
     border-radius: 20px;
-    opacity: 0.5;
+    opacity: 0.7;
 }
 
 .current-temp {
@@ -64,7 +64,7 @@ img {
     padding: 0px;
 }
 
-.temp-top-text {
+#temp-top-text {
     position: absolute;
     top: 40px;
     width: 100%;
@@ -74,8 +74,14 @@ img {
 
 #temperature {
     position: absolute;
-    font-size: 150px;
-    top: 70px;
+    top: 80px;
+    width: 100%;
+    font-size: 120px;
+}
+
+#weather-description {
+    position: absolute;
+    top: 250px;
     width: 100%;
 }
 
@@ -99,7 +105,15 @@ img {
 .results-bottom {
     position: relative;
     margin: auto 10px;
-    height: 40%;
+    height: 45%;
+}
+
+.card {
+    border-radius: 20px;
+}
+
+.card-body {
+    padding: 0;
 }
 
 .forecast {
@@ -108,38 +122,4 @@ img {
     padding: 0;
     background-color: white;
     border-radius: 20px;
-}
-
-
-
-.sunny {
-
-}
-
-.snowy {
-
-}
-
-.windy {
-
-}
-
-.cloudy {
-
-}
-
-.stormy {
-    background: url(./assets/images/stormy.jpg);
-}
-
-.rainy {
-
-}
-
-.foggy {
-
-}
-
-.pcloudy {
-
 }

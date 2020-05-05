@@ -16,7 +16,7 @@
 <header>
     <div class="jumbotron">
         <h1>Juniper's Weather App</h1>
-        <p class="lead">Get weather information from a child.</p>
+        <p class="lead">Get your weather information from a child.</p>
     </div>
 </header>
 
@@ -35,8 +35,9 @@
                     <div class="col-sm-12 col-md-6 current-temp">
                         <img id="today-image" src="./assets/images/colors.jpg" alt="Color cloud" height="300px"
                             width="300px">
-                        <h5 class="temp-top-text">Search for a city.</h5>
+                        <h5 id="temp-top-text">Search for a city.</h5>
                         <div id="temperature"><span id="fTemp"></span></div>
+                        <h3 id="weather-description"></h3>
                     </div>
 
                     <div class="col-sm-12 col-md-6 weather-details">
@@ -50,16 +51,63 @@
 
                 <div class="row results-bottom">
                     <div class="col forecast" id="forecast1">
-                        <img src="./assets/images/colors.jpg" alt="Color cloud" height="150px">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <img class="card-img-top" src="./assets/images/colors.jpg" alt="Color cloud">
+                                <h6 class="future-temp"></h6>
+                                <h6 class="future-cond"></h6>
+                                <h6 class="future-date"></h6>
+                            </div>
+                        </div>
                     </div>
                     <div class='w-100 d-md-none'></div>
-                    <div class="col forecast" id="forecast2"></div>
+
+                    <div class="col forecast" id="forecast2">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <img class="card-img-top" src="./assets/images/colors.jpg" alt="Color cloud">
+                                <h6 class="future-temp"></h6>
+                                <h6 class="future-cond"></h6>
+                                <h6 class="future-date"></h6>
+                            </div>
+                        </div>
+                    </div>
                     <div class='w-100 d-md-none'></div>
-                    <div class="col forecast" id="forecast3"></div>
+
+                    <div class="col forecast" id="forecast3">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <img class="card-img-top" src="./assets/images/colors.jpg" alt="Color cloud">
+                                <h6 class="future-temp"></h6>
+                                <h6 class="future-cond"></h6>
+                                <h6 class="future-date"></h6>
+                            </div>
+                        </div>
+                    </div>
                     <div class='w-100 d-md-none'></div>
-                    <div class="col forecast" id="forecast4"></div>
+
+                    <div class="col forecast" id="forecast4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <img class="card-img-top" src="./assets/images/colors.jpg" alt="Color cloud">
+                                <h6 class="future-temp"></h6>
+                                <h6 class="future-cond"></h6>
+                                <h6 class="future-date"></h6>
+                            </div>
+                        </div>
+                    </div>
                     <div class='w-100 d-md-none'></div>
-                    <div class="col forecast" id="forecast5"></div>
+
+                    <div class="col forecast" id="forecast5">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <img class="card-img-top" src="./assets/images/colors.jpg" alt="Color cloud">
+                                <h6 class="future-temp"></h6>
+                                <h6 class="future-cond"></h6>
+                                <h6 class="future-date"></h6>
+                            </div>
+                        </div>
+                    </div>
                     <div class='w-100 d-md-none'></div>
                 </div>
             </div>
@@ -67,6 +115,7 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="./assets/javascript/weather.js"></script>
 
 </body>
