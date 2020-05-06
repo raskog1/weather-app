@@ -104,7 +104,7 @@ img {
 
 .results-bottom {
     position: relative;
-    margin: auto 10px;
+    margin: auto;
     height: 45%;
 }
 
@@ -112,13 +112,16 @@ img {
     border-radius: 20px;
 }
 
+.card-header {
+    padding: 12px 20px 2px 20px;
+}
+
 .card-body {
     padding: 0;
 }
 
 .forecast {
-    height: 150px;
-    margin: 5px;
+    margin: 2px 5px 20px 5px;
     padding: 0;
     background-color: white;
     border-radius: 20px;

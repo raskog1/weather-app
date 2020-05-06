@@ -1,23 +1,54 @@
 let historyDiv = document.getElementById("city-history");
 let cityHistory = [];
+let apiKey = "462e1590393042b6de4c11d6437c183d";
 
 $("#search-button").on("click", function () {
-
     let citySearch = $("#search-city").val().trim();
-    let apiKey = "462e1590393042b6de4c11d6437c183d";
-    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + citySearch + "&appid=" + apiKey;
+    getWeather(citySearch);
+})
 
-    // Assigns latitude and longitude variables
+function getWeather(city) {
+
+    // This is a nightmare.  Without the unbind method, it pulls multiple times depending on 
+    // what location that element is in if I were to array the buttons.  Without the .city-button
+    // as a parameter, it will not pull from the first button since array location would be 0.
+    $("#city-history").unbind().on("click", ".city-button", function (event) {
+        event.preventDefault();
+        getWeather($(this).attr("id"));
+        // $.when(ajax1()).done(function () {
+        //     historyDiv.firstElementChild.remove();
+        //     cityHistory.splice(0, 1);
+        // })
+    });
+
+    let queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + apiKey;
+
+
     $.ajax({
         url: queryURL,
         method: "GET"
     })
         .then(function (response) {
-            let latitude = response.coord.lat;
-            let longitude = response.coord.lon;
-            // let tempF;
-            let city = response.name;
-            let forecastURL = "https://api.openweathermap.org/data/2.5/onecall?lat=" + latitude + "&lon=" + longitude + "&exclude=hourly&appid=" + apiKey;
+            const city = response.name;
+            const latitude = response.coord.lat;
+            const longitude = response.coord.lon;
+            const forecastURL = "https://api.openweathermap.org/data/2.5/onecall?lat="
+                + latitude + "&lon=" + longitude + "&exclude=hourly&appid=" + apiKey;
+
+            if (cityHistory.length > 6) {
+                historyDiv.lastElementChild.remove();
+                var newCity = $("<button>").text(city).addClass("btn btn-info city-button")
+                    .attr("id", city);
+                $("#city-history").prepend(newCity);
+                cityHistory.splice(0, 1);
+            } else {
+                var newCity = $("<button>").text(city).addClass("btn btn-info city-button")
+                    .attr("id", city);
+                $("#city-history").prepend(newCity);
+            }
+
+            cityHistory.push(city);
+            localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
 
             $.ajax({
                 url: forecastURL,
@@ -25,32 +56,17 @@ $("#search-button").on("click", function () {
             })
                 .then(function (response) {
 
-                    console.log(response);
-
                     let conditions = response.current.weather[0].main;
 
-                    cityHistory.push(city);
-                    localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
-
-                    if (cityHistory.length > 7) {
-                        historyDiv.lastElementChild.remove();
-                        let newCity = $("<button>").text(city).addClass("btn btn-info city-button")
-                            .attr("id", city);
-                        $("#city-history").prepend(newCity);
-                        cityHistory.splice(0, 1);
-                    } else {
-                        let newCity = $("<button>").text(city).addClass("btn btn-info city-button")
-                            .attr("id", city);
-                        $("#city-history").prepend(newCity);
-                    }
-
+                    // Populates main weather image and details
                     $("#today-image").attr("src", "./assets/images/" + conditions + ".jpg");
                     $("#today-image").attr("alt", conditions);
+                    $("#temp-top-text").html("The current temperature in <strong>" + city + "</strong> is:");
                     $("#fTemp").html(convertF(response.current.temp) + "<span>&#176</span>");
                     $("#weather-description").text(conditions);
 
                     // Populates current day weather details
-                    $("#temp-top-text").text("The current temperature in " + city + " is:");
+                    $("#date").text("Date: " + displayDate(response.current.dt));
                     $("#humidity").html("Humidity: " + response.current.humidity + "<span>&#37</span>");
                     $("#windSpeed").text("Wind Speed: " + response.current.wind_speed + " mph");
                     $("#uvIndex").text("UV Index: " + response.current.uvi);
@@ -85,7 +101,23 @@ $("#search-button").on("click", function () {
 
                 }) // End AJAX call
         })
-}) // End search button function
+}
+
+$(document).ready(function () {
+
+    if (window.localStorage.length == 0) {
+    } else {
+        cityHistory = JSON.parse(localStorage.getItem("cityHistory"));
+
+        for (i = 0; i < cityHistory.length; i++) {
+            let city = cityHistory[i];
+            let newCity = $("<button>").text(city).addClass("btn btn-info city-button")
+                .attr("id", city);
+            $("#city-history").prepend(newCity);
+        }
+    }
+    getWeather(cityHistory[0]);
+})
 
 function convertF(number) {
     tempF = parseInt((number - 273.15) * 1.80 + 32);
@@ -102,7 +134,6 @@ function displayDate(data) {
     return returnDate;
 }
 
-$(".city-button").on("click", function () {
-    let citySearch = $(this).attr("id");
-    console.log(city);
-})
+
+
+
