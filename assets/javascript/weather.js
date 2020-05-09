@@ -11,10 +11,6 @@ $(document).ready(function () {
     } else {
         cityHistory = JSON.parse(localStorage.getItem("cityHistory"));
 
-        if (cityHistory.length > 7) {
-            cityHistory.length = 7;
-        }
-
         for (i = 0; i < cityHistory.length; i++) {
             let city = cityHistory[i];
             let newCity = $("<button>").text(city).addClass("btn btn-info city-button")
