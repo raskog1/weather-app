@@ -6,6 +6,10 @@
 
 .container {
     font-family: 'Comfortaa', cursive;
+    position: relative;
+    top: -80px;
+    border: 10px solid aquamarine;
+    border-radius: 30px;
 }
 
 .jumbotron {
@@ -52,16 +56,16 @@
     border-radius: 20px;
 }
 
-img {
-    border-radius: 20px;
-    opacity: 0.7;
-}
-
 .current-temp {
     position: relative;
     text-align: center;
     margin: auto;
     padding: 0px;
+}
+
+.current-temp img {
+    border-radius: 20px;
+    opacity: 0.9;
 }
 
 #temp-top-text {
@@ -100,6 +104,13 @@ img {
 
 #weather-list h4 {
     margin: 20px 0;
+}
+
+.dot {
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    display: inline-block;
 }
 
 .results-bottom {
