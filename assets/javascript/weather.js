@@ -7,7 +7,7 @@ $(document).ready(function () {
 
     if (window.localStorage.length == 0) {
         getWeather("Timbuktu");
-        cityHistory.splice(0, 1);
+        return;
     } else {
         cityHistory = JSON.parse(localStorage.getItem("cityHistory"));
 
@@ -22,7 +22,6 @@ $(document).ready(function () {
             $("#city-history").append(newCity);
         }
         getWeather(cityHistory[0]);
-        cityHistory.splice(0, 1);
     }
 })
 
@@ -30,14 +29,12 @@ $(document).keypress(function (e) {
     if (e.which == 13) {
         let citySearch = $("#search-city").val().trim();
         getWeather(citySearch);
-        makeButton();
     }
 })
 
 $("#search-button").on("click", function () {
     let citySearch = $("#search-city").val().trim();
     getWeather(citySearch);
-    makeButton();
 })
 
 $("body").on("click", ".city-button", function () {
@@ -45,10 +42,9 @@ $("body").on("click", ".city-button", function () {
 })
 
 // Creates a new button
-function makeButton() {
+function makeButton(city) {
 
     localStorage.setItem("cityHistory", JSON.stringify(cityHistory));
-    city = cityHistory[0];
 
     if (cityHistory.length > 7) {
         historyDiv.lastElementChild.remove();
@@ -63,6 +59,16 @@ function makeButton() {
     }
 }
 
+function checkDuplicate(city) {
+    for (let i = 0; i < cityHistory.length; i++) {
+        if (city === cityHistory[i]) {
+            return;
+        }
+    }
+    cityHistory.unshift(city);
+    makeButton(city);
+}
+
 // API calls to obtain all weather information
 function getWeather(city) {
 
@@ -72,7 +78,6 @@ function getWeather(city) {
     $.ajax({
         url: queryURL,
         method: "GET",
-        async: false,
         error: function () {
             alert("Please enter a valid city.");
         },
@@ -83,7 +88,8 @@ function getWeather(city) {
             const forecastURL = "https://api.openweathermap.org/data/2.5/onecall?lat="
                 + latitude + "&lon=" + longitude + "&exclude=hourly&appid=" + apiKey;
 
-            cityHistory.unshift(city);
+
+            checkDuplicate(city);
 
             // This One Call API populates all weather detail by converting coordinates to a city
             $.ajax({
